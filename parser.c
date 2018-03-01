@@ -69,6 +69,35 @@ void parse_file ( char * filename,
   while ( fgets(line, 255, f) != NULL ) {
     line[strlen(line)-1]='\0';
     printf(":%s:\n",line);
+
+  if (strcmp(line,"line") == 0){
+    fgets(line, 255, f);
+    int x0,y0,z0,x1,y1,z1;
+    x0 = strsep(line, " ");
+    y0 = strsep(line, " ");
+    z0 = strsep(line, " ");
+    x1 = strsep(line, " ");
+    y1 = strsep(line, " ");
+    z1 = strsep(line, " ");
+    add_edge(edges, x0, y0, z0, x1, y1, z1);
+  }
+  else if (strcmp(line,"ident") == 0){
+    ident(transform);
+  }
+  else if (strcmp(line,"line") == 0){
+    
+  }
+  else if (strcmp(line,"line") == 0){
+
+  }
+  else if (strcmp(line,"line") == 0){
+
+  }
+  else if (strcmp(line,"line") == 0){
+
+  }
+  else
+    printf("Invalid Command");
   }
 }
   
