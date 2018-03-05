@@ -59,11 +59,11 @@ void parse_file ( char * filename,
 
   FILE *f;
   char line[256];
-  //char *args[6];
   clear_screen(s);
 
 
   color c;
+  c.red = 252;
   
   if ( strcmp(filename, "stdin") == 0 ) 
     f = stdin;
@@ -110,11 +110,11 @@ void parse_file ( char * filename,
     else if (strcmp(line,"rotate") == 0){
       fgets(line, 255, f);
       line[strlen(line)-1]='\0';
-      char *axis;
+      char axis;
       float theta;
       
-      sscanf(line, "%s %f", axis, &theta);
-      printf("%s %.1f \n", axis, theta);
+      sscanf(line, "%c %f", &axis, &theta);
+      printf("%c %.1f \n", axis, theta);
 
       float rad = theta * M_PI / 180;
       
