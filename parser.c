@@ -119,21 +119,24 @@ void parse_file ( char * filename,
       float rad = theta * M_PI / 180;
       
       struct matrix *tmp;
-      if (axis == 'x'){//strcmp(&axis,"x") == 0){
+      if (axis == 'x'){
 	printf("x\n");
 	tmp = make_rotX(rad);}
-      else if (axis == 'y'){//strcmp(&axis,"y") == 0){
-	printf("x\n");
+      else if (axis == 'y'){
+	printf("y\n");
 	tmp = make_rotY(rad);}
-      else if (axis == 'z'){//strcmp(&axis,"z") ==0){
-	printf("x\n");
-	tmp = make_rotZ(rad);}
+      else if (axis == 'z'){
+	printf("z\n");
+	tmp = make_rotZ(rad);
+	printf("hi\n");}
       else{
 	tmp = new_matrix(4,4);
 	ident(tmp);
 	printf("Invalid Axis\n");
       }
+      
       matrix_mult(tmp, transform);
+      print_matrix(tmp);
       free_matrix(tmp);
     }
     else if (strcmp(line,"apply") == 0){

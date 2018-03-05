@@ -35,6 +35,8 @@ display
 ident
 rotate
 z 20
+apply
+display
 rotate
 x 20
 rotate
