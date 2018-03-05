@@ -127,8 +127,7 @@ void parse_file ( char * filename,
 	tmp = make_rotY(rad);}
       else if (axis == 'z'){
 	printf("z\n");
-	tmp = make_rotZ(rad);
-	printf("hi\n");}
+	tmp = make_rotZ(rad);}
       else{
 	tmp = new_matrix(4,4);
 	ident(tmp);

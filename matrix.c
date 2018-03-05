@@ -66,7 +66,7 @@ struct matrix * make_rotY(double theta) {
   ret->m[0][2] = sin(theta);
   ret->m[2][0] = -1 * sin(theta);
   ret->m[2][2] = cos(theta);
-  return NULL;
+  return ret;
 }
 
 /*======== struct matrix * make_rotZ() ==========
