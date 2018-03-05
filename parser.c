@@ -71,7 +71,6 @@ void parse_file ( char * filename,
     f = fopen(filename, "r");
   
   while ( fgets(line, 255, f) != NULL ) {
-    clear_screen(s);
     line[strlen(line)-1]='\0';
     printf(":%s:\n",line);
     if (strcmp(line,"line") == 0){
@@ -95,6 +94,7 @@ void parse_file ( char * filename,
       tmp = make_scale(sx, sy, sz);
       matrix_mult(tmp, transform);
       free_matrix(tmp);
+      
     }
     else if (strcmp(line,"move") == 0){
       fgets(line, 255, f);
@@ -107,6 +107,7 @@ void parse_file ( char * filename,
       matrix_mult(tmp, transform);
       free_matrix(tmp);
     }
+    
     else if (strcmp(line,"rotate") == 0){
       fgets(line, 255, f);
       line[strlen(line)-1]='\0';
@@ -114,20 +115,17 @@ void parse_file ( char * filename,
       float theta;
       
       sscanf(line, "%c %f", &axis, &theta);
-      printf("%c %.1f \n", axis, theta);
+      printf("%c %f \n", axis, theta);
 
       float rad = theta * M_PI / 180;
       
       struct matrix *tmp;
-      if (axis == 'x'){
-	printf("x\n");
-	tmp = make_rotX(rad);}
-      else if (axis == 'y'){
-	printf("y\n");
-	tmp = make_rotY(rad);}
-      else if (axis == 'z'){
-	printf("z\n");
-	tmp = make_rotZ(rad);}
+      if (axis == 'x')
+	tmp = make_rotX(rad);
+      else if (axis == 'y')
+	tmp = make_rotY(rad);
+      else if (axis == 'z')
+	tmp = make_rotZ(rad);
       else{
 	tmp = new_matrix(4,4);
 	ident(tmp);
@@ -137,12 +135,16 @@ void parse_file ( char * filename,
       matrix_mult(tmp, transform);
       print_matrix(tmp);
       free_matrix(tmp);
-    }
+      
+      }
+
+    
     else if (strcmp(line,"apply") == 0){
       matrix_mult(transform, edges);
     }
     else if (strcmp(line,"display") == 0){
       //c.red = 252;
+      clear_screen(s);
       draw_lines(edges, s, c);
       display(s);
     }
